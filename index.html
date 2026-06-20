@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameMatch — Tactics Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="floodlight floodlight--l"></div>
+  <div class="floodlight floodlight--r"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="crest">⚽</span>
+      <h1>GAME<span>MATCH</span></h1>
+    </div>
+    <p class="tagline">Pick your shape. Out-think the opposition. Win the tactical battle.</p>
+  </header>
+
+  <!-- ============ SCREEN 1: TEAM SHEET / SETUP ============ -->
+  <section id="screen-setup" class="screen is-active">
+    <div class="screen-head">
+      <span class="kicker">Pre-Match · Team Sheet</span>
+      <h2>Choose Your Formation</h2>
+      <p>The opposition manager is finalising their plan in the dugout. Select your shape and kick off.</p>
+    </div>
+    <div id="formation-grid" class="formation-grid"></div>
+    <div class="setup-footer">
+      <p id="selection-readout" class="selection-readout">No formation selected yet.</p>
+      <button id="kickoff-btn" class="btn btn--primary" disabled>
+        <span class="whistle">🎽</span> Kick Off
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 2: MATCH RESULT ============ -->
+  <section id="screen-match" class="screen">
+    <div id="kickoff-anim" class="kickoff-anim">
+      <div class="kickoff-anim__inner">
+        <span class="kickoff-ball">⚽</span>
+        <p id="kickoff-text">Teams are out... we're underway!</p>
+      </div>
+    </div>
+
+    <div id="match-content" class="match-content">
+      <div class="scoreboard">
+        <div class="scoreboard__team scoreboard__team--home">
+          <span class="scoreboard__label">YOU</span>
+          <span id="home-formation" class="scoreboard__formation">—</span>
+        </div>
+        <div class="scoreboard__score">
+          <span id="scoreline">0 – 0</span>
+          <span id="result-tag" class="result-tag">FULL TIME</span>
+        </div>
+        <div class="scoreboard__team scoreboard__team--away">
+          <span class="scoreboard__label">OPPOSITION</span>
+          <span id="away-formation" class="scoreboard__formation">—</span>
+        </div>
+      </div>
+
+      <p id="match-verdict" class="match-verdict"></p>
+
+      <div class="match-grid">
+        <div class="panel panel--pitch">
+          <h3 class="panel__title">On The Pitch</h3>
+          <div class="pitch-pair">
+            <div class="pitch-wrap">
+              <div id="pitch-home" class="pitch pitch--home"></div>
+              <span class="pitch-caption" id="pitch-home-cap">You</span>
+            </div>
+            <div class="pitch-wrap">
+              <div id="pitch-away" class="pitch pitch--away"></div>
+              <span class="pitch-caption" id="pitch-away-cap">Opposition</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel--stats">
+          <h3 class="panel__title">Match Stats</h3>
+          <div id="stats" class="stats"></div>
+        </div>
+
+        <div class="panel panel--timeline">
+          <h3 class="panel__title">Match Timeline</h3>
+          <ul id="timeline" class="timeline"></ul>
+        </div>
+      </div>
+
+      <div class="match-actions">
+        <button id="to-analysis-btn" class="btn btn--primary">Ask the Analyst →</button>
+        <button id="newgame-btn-1" class="btn btn--ghost">New Game</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 3: ANALYST Q&A ============ -->
+  <section id="screen-analysis" class="screen">
+    <div class="screen-head">
+      <span class="kicker">Post-Match · Press Conference</span>
+      <h2>Ask the Analyst</h2>
+      <p>Quiz the tactics analyst about the result. Tap a suggested question or type your own.</p>
+    </div>
+
+    <div class="analyst">
+      <div id="chat" class="chat"></div>
+      <div id="suggestions" class="suggestions"></div>
+      <form id="ask-form" class="ask-form">
+        <input id="ask-input" class="ask-input" type="text" autocomplete="off"
+          placeholder="e.g. Who won the midfield battle?" />
+        <button class="btn btn--primary" type="submit">Ask</button>
+      </form>
+    </div>
+
+    <div class="analysis-actions">
+      <button id="back-to-match-btn" class="btn btn--ghost">← Back to Result</button>
+      <button id="newgame-btn-2" class="btn btn--primary">New Game</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>GameMatch · a tactical thought experiment in 11v11 football</span>
+  </footer>
+
+  <script src="js/formations.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/analyst.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
